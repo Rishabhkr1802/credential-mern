@@ -1,5 +1,9 @@
 export async function signUp(req, res) {
-  console.log(req);
+  const { name, email, password } = req.body;
+
+  if (!name || !email || !password) {
+    res.status(400).json({ message: "Invalid input" });
+  }
 }
 
 export async function login(req, res) {
