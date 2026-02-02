@@ -1,4 +1,5 @@
 import { getUserByEmailService } from "../services/auth.service";
+import { generatePassword } from "../utils/helper";
 
 export async function signUp(req, res) {
   const { name, email, password } = req.body;
@@ -11,6 +12,9 @@ export async function signUp(req, res) {
     if (existingUser) {
       res.status(400).json({ success: false, message: "Email already exists" })
     }
+
+    const newPassword = await generatePassword(password);
+    
 
   } catch (error) {
     console.log("Error occurs during signup controller", error);
