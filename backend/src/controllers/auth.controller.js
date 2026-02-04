@@ -14,7 +14,12 @@ export async function signUp(req, res) {
     }
 
     const newPassword = await generatePassword(password);
-    
+    const user = {
+      name, email, password: newPassword
+    }
+
+     const token = 
+
 
   } catch (error) {
     console.log("Error occurs during signup controller", error);
