@@ -1,5 +1,6 @@
 import { getUserByEmailService } from "../services/auth.service";
-import { generatePassword } from "../utils/helper";
+import { generatePassword, generteJWTToken } from "../utils/helper";
+import User from "../models/User.model.js";
 
 export async function signUp(req, res) {
   const { name, email, password } = req.body;
@@ -14,12 +15,14 @@ export async function signUp(req, res) {
     }
 
     const newPassword = await generatePassword(password);
-    const user = {
+    const user = new User({
       name, email, password: newPassword
-    }
+    })
+    await user.save();
 
-     const token = 
-
+    const token = await generteJWTToken(user);
+    res.cookie(token);
+    return res.status(201).json({ success: true, message: "user create successfully", token });
 
   } catch (error) {
     console.log("Error occurs during signup controller", error);
