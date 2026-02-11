@@ -1,9 +1,9 @@
-import User from "../models/user.model.js";
+import User from "../models/User.model.js";
 
 export async function getUserByEmailDao(email) {
   if (!email) return;
   try {
-    const user = User.findOne({ email });
+    const user = await User.findOne({email});
     return user;
 
   } catch (error) {

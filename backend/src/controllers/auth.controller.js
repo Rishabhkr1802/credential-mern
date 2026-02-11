@@ -1,5 +1,5 @@
-import { getUserByEmailService } from "../services/auth.service";
-import { generatePassword, generteJWTToken } from "../utils/helper";
+import { getUserByEmailService } from "../services/auth.service.js";
+import { generatePassword, generteJWTToken } from "../utils/helper.js";
 import User from "../models/User.model.js";
 
 export async function signUp(req, res) {

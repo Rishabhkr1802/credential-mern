@@ -1,18 +1,27 @@
-import express from "express";
-import dotenv from "dotenv";
-import { connectDB } from "./db/database.config.js";
+import express        from "express";
+import dotenv         from "dotenv";
+import { connectDB }  from "./db/database.config.js";
+// import cookieparser   from "cookie-parser";
+// import cors           from "cors";
 
-import authRoutes from "./routes/auth.routes.js";
+import authRoutes     from "./routes/auth.routes.js";
 
 dotenv.config({
   path: "./.env",
 })
 
-const PORT = process.env.PORT;
-const app = express();
+// app.use(cors({
+//     origin: ['http://localhost:3000','http://192.168.0.104:3000'],
+//     credentials: true,
+// }));
 
-app.use(express.json());
-app.use(express.urlencoded({ limit: "30kb" }));
+const PORT  = process.env.PORT || 5000;
+const app   = express();
+
+app.use(express.json({ limit: "30kb" }));
+app.use(express.urlencoded({ extended: false, limit: '20kb' }));
+// app.use(express.static("uploads"));
+// app.use(cookieparser());
 
 app.use("/api/v1/auth", authRoutes);
 
