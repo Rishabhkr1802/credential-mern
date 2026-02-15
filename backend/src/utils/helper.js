@@ -13,10 +13,6 @@ export async function matchPassword(password) {
 }
 
 export async function generteJWTToken(user) {
-  const token = await jwt.sign({ user }, process.env.JWT_SECRET_KEY, {
-    secure: true,
-    xxr: "",
-    css: "",
-  })
+  const token = await jwt.sign({ user }, process.env.JWT_SECRET_KEY, { expiresIn: "7d" })
   return token;
 }

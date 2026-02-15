@@ -21,7 +21,13 @@ export async function signUp(req, res) {
     await user.save();
 
     const token = await generteJWTToken(user);
-    res.cookie(token);
+    res.cookie("token", token, 
+      { maxAge    : 24 * 7 * 60 * 60 * 1000,
+        httpOnly  : true,
+        sameSite  : "strict",
+        secure    : process.env.NOde_ENV === "production"
+      }
+    );
     return res.status(201).json({ success: true, message: "user create successfully", token });
 
   } catch (error) {
