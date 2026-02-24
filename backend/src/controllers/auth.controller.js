@@ -36,9 +36,9 @@ export async function signUp(req, res) {
 }
 
 export async function login(req, res) {
-  return console.log("login")
+  return 
 }
 
 export async function logout(req, res) {
-  return console.log("logout")
+  return 
 }
