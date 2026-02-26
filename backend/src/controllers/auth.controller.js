@@ -36,7 +36,7 @@ export async function signUp(req, res) {
 }
 
 export async function login(req, res) {
-  return 
+  return res.status(200).json({message: "Login Successfully"});
 }
 
 export async function logout(req, res) {
